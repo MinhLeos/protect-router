@@ -35,43 +35,47 @@ const handleClickCallApi = async () => {
     $notification({
       active: true,
       status: "error",
-      title: "Call API error",
-      content: error.value.statusMessage || "Call API error",
+      title: error.value.statusCode === 401 ? "Unauthorized" : "Fail",
+      content: error.value.statusMessage || "Get data fail",
+      timeout: 4000,
     });
+    users.value = [];
     return;
   }
   $notification({
     active: true,
     status: "sucess",
-    title: "Call API sucess",
-    content: "Call API succes",
+    title: "Sucess",
+    content: "Get data succes",
     timeout: 4000,
   });
   users.value = data.value;
-  //   $fetch("/api/data", {
-  //     headers: {
-  //       authorization: isLogined.value ? "abcde" : "",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       console.log("res", res);
-  //       $notification({
-  //         active: true,
-  //         status: "sucess",
-  //         title: "Call API sucess",
-  //         content: "Call API succes",
-  //         timeout: 3000,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log("err", err);
-  //       $notification({
-  //         active: true,
-  //         status: "error",
-  //         title: "Call API error",
-  //         content: err?.message || "Call API error",
-  //       });
+  // $fetch("/api/data", {
+  //   headers: {
+  //     authorization: tokenCookies.value || "",
+  //   },
+  // })
+  //   .then((res) => {
+  //     console.log("res", res);
+  //     $notification({
+  //       active: true,
+  //       status: "sucess",
+  //       title: "Sucess",
+  //       content: "Get data succes",
+  //       timeout: 3000,
   //     });
+  //     users.value = res;
+  //   })
+  //   .catch((err) => {
+  //     console.log("err", err);
+  //     $notification({
+  //       active: true,
+  //       status: "error",
+  //       title: err?.statusMessage || "Fail",
+  //       content: err?.message || "Get data fail",
+  //       timeout: 4000,
+  //     });
+  //   });
 };
 </script>
 

@@ -7,7 +7,7 @@ export default async (event: H3Event) => {
     if (!headers.authorization) {
         throw createError({
             statusCode: 401,
-            statusMessage: 'Unauthorized',
+            statusMessage: 'Please login to get data!',
             message: 'Unauthorized'
         });
     }
@@ -21,7 +21,7 @@ export default async (event: H3Event) => {
     if (!user || !user.isHavePermission) {
         throw createError({
             statusCode: 401,
-            statusMessage: 'Unauthorized',
+            statusMessage: 'You do not have permission to get data!',
             message: 'Unauthorized'
         });
     }
